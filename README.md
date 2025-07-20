@@ -129,7 +129,7 @@ In this case, the script extracts the "total" line: Used=54G, Total=122G, Percen
 
 ### 4. Top 5 Processes by CPU Usage
 ```bash
-ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%cpu | head -n 6
+ps -eo user,pid,ppid,cmd,stime,time,%mem,%cpu --sort=-%cpu | head -n 6
 ```
 
 **Command breakdown:**
@@ -143,19 +143,37 @@ ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%cpu | head -n 6
 - **`cmd`**: Command name or command line
 - **`stime`**: Start time of the process
 - **`time`**: Cumulative CPU time used by the process
-- **`%cpu`**: CPU usage percentage
 - **`%mem`**: Memory usage percentage
+- **`%cpu`**: CPU usage percentage
 - **`--sort=-%cpu`**: Sort output by CPU usage in descending order (- indicates descending)
 - **`head -n 6`**: Display only the first 6 lines (header + top 5 processes)
 
 **Example ps output:**
 ```
+USER         PID    PPID CMD                     STIME     TIME     %MEM    %CPU
+root        1234       1 /usr/bin/some-process   10:30   00:02:15   2.1     5.2
+mysql       5678    1234 /usr/sbin/mysqld        09:15   00:01:45   8.4     3.8
+www-data    9012    5678 apache2                 11:45   00:00:30   1.5     2.1
+user        3456    2345 firefox                 12:00   00:01:00   12.3    1.8
+root        7890    1234 /usr/bin/backup         13:30   00:00:15   0.8     0.5
+```
+
+### 5. Top 5 Processes by Memory Usage
+```bash
+ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%mem| head -n 6
+```
+
+**Command breakdown:**
+- **`--sort=-%mem`**: Sort output by memory usage in descending order (- indicates descending)
+
+**Example ps output:**
+```
 USER         PID    PPID CMD                     STIME     TIME %CPU %MEM
-root        1234       1 /usr/bin/some-process   10:30   00:02:15  5.2  2.1
+root        1234       1 /usr/bin/some-process   10:30   00:02:15  1.1  12.3
 mysql       5678    1234 /usr/sbin/mysqld        09:15   00:01:45  3.8  8.4
-www-data    9012    5678 apache2                 11:45   00:00:30  2.1  1.5
-user        3456    2345 firefox                 12:00   00:01:00  1.8  12.3
-root        7890    1234 /usr/bin/backup         13:30   00:00:15  0.5  0.8
+www-data    9012    5678 apache2                 11:45   00:00:30  5.1  1.5
+user        3456    2345 firefox                 12:00   00:01:00  0.8  1.0
+root        7890    1234 /usr/bin/backup         13:30   00:00:15  1.5  0.8
 ```
 
 ## Issues Encountered and Solutions

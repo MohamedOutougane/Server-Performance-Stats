@@ -46,7 +46,11 @@ echo -e "\n--- Top 5 Processes by CPU Usage ---"
 # %mem : memory usage percentage.
 # --sort=-%cpu : sorts the output by CPU usage in descending order.
 # head -n 6 : limits the output to the top 5 processes plus the header.
+ps -eo user,pid,ppid,cmd,stime,time,%mem,%cpu --sort=-%cpu | head -n 6
 
-ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%cpu | head -n 6
+
+echo -e "\n--- Top 5 Processes by Memory Usage ---"
+# --sort=-%mem : sorts the output by Memory usage in descending order.
+ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%mem | head -n 6
 
 echo "=============================================="
