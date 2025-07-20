@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "========== SERVER PERFORMANCE STATS =========="
+
+echo -e "\n--- CPU Usage ---"
+# top : is a command that provides a dynamic real-time view of the system.
+# -b : batch mode operation, useful for sending output to other programs or files.
+# -n1 : update the output only once.
+# grep : filters the output to show only the line containing "Cpu(s)".
+# awk : a programming language that is used for pattern scanning and processing.
+top -bn1 | grep "Cpu(s)" | \
+    awk '{print "CPU Usage: " 100 - $8 "%"}'
+
+
+echo "=============================================="
