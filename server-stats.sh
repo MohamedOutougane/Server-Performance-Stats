@@ -22,4 +22,15 @@ free -m | awk 'NR==2 {
     printf "Memory Used: %sMB / %sMB (%.2f%%)\n", used, total, used*100/total
 }'
 
+
+echo -e "\n--- Disk Usage ---"
+# df : reports the amount of disk space used and available on filesystems.
+# -h : makes the output human-readable, showing sizes in KB, MB, or GB
+# --total : includes a total line at the end of the output.
+# $1 == "total" : filters the output to show only the total line.
+df -h --total | awk '$1 == "total" {
+    print "Disk Used: " $3 " / " $2 " (" $5 ")"
+}'
+
+
 echo "=============================================="

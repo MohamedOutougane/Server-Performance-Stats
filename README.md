@@ -98,6 +98,34 @@ Swap:          2047           0        2047
 ```
 In this case, `$2` (total) = 3944, `$3` (used) = 1250, so usage = 1250/3944 * 100 = 31.69%
 
+
+### 3. Disk Storage Monitoring
+```bash
+df -h --total | awk '$1 == "total" {
+    print "Disk Used: " $3 " / " $2 " (" $5 ")"
+}'
+```
+
+**Command breakdown:**
+
+- **`df`**: Reports the amount of disk space used and available on filesystems
+- **`-h`**: Human-readable format - shows sizes in KB, MB, GB instead of bytes
+- **`--total`**: Includes a summary total line at the end of the output
+- **`$1 == "total"`**: Filters output to show only the line where the first field equals "total"
+- **`$3`**: References the 3rd field (used space)
+- **`$2`**: References the 2nd field (total space)
+- **`$5`**: References the 5th field (usage percentage)
+- **`print`**: Outputs the formatted result showing used/total space and percentage
+
+**Example df -h --total output:**
+```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        20G  8.5G   11G  45% /
+/dev/sda2       100G   45G   50G  48% /home
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+total           122G   54G   63G  47%
+```
+In this case, the script extracts the "total" line: Used=54G, Total=122G, Percentage=47%
 ## Issues Encountered and Solutions
 
 
