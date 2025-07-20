@@ -126,6 +126,38 @@ tmpfs           2.0G     0  2.0G   0% /dev/shm
 total           122G   54G   63G  47%
 ```
 In this case, the script extracts the "total" line: Used=54G, Total=122G, Percentage=47%
+
+### 4. Top 5 Processes by CPU Usage
+```bash
+ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%cpu | head -n 6
+```
+
+**Command breakdown:**
+
+- **`ps`**: Reports a snapshot of current processes running on the system
+- **`-e`**: Select all processes (equivalent to -A)
+- **`-o`**: Specify custom output format with desired columns
+- **`user`**: Username of the process owner
+- **`pid`**: Process ID (unique identifier for each process)
+- **`ppid`**: Parent Process ID (ID of the process that started this process)
+- **`cmd`**: Command name or command line
+- **`stime`**: Start time of the process
+- **`time`**: Cumulative CPU time used by the process
+- **`%cpu`**: CPU usage percentage
+- **`%mem`**: Memory usage percentage
+- **`--sort=-%cpu`**: Sort output by CPU usage in descending order (- indicates descending)
+- **`head -n 6`**: Display only the first 6 lines (header + top 5 processes)
+
+**Example ps output:**
+```
+USER         PID    PPID CMD                     STIME     TIME %CPU %MEM
+root        1234       1 /usr/bin/some-process   10:30   00:02:15  5.2  2.1
+mysql       5678    1234 /usr/sbin/mysqld        09:15   00:01:45  3.8  8.4
+www-data    9012    5678 apache2                 11:45   00:00:30  2.1  1.5
+user        3456    2345 firefox                 12:00   00:01:00  1.8  12.3
+root        7890    1234 /usr/bin/backup         13:30   00:00:15  0.5  0.8
+```
+
 ## Issues Encountered and Solutions
 
 

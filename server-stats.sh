@@ -33,4 +33,20 @@ df -h --total | awk '$1 == "total" {
 }'
 
 
+echo -e "\n--- Top 5 Processes by CPU Usage ---"
+# ps : reports a snapshot of current processes.
+# -eo : specifies the output format.
+# user : user name of the process owner.
+# pid : process ID.
+# ppid : parent process ID.
+# cmd : command name.
+# stime : start time of the process.
+# time : cumulative CPU time.
+# %cpu : CPU usage percentage.
+# %mem : memory usage percentage.
+# --sort=-%cpu : sorts the output by CPU usage in descending order.
+# head -n 6 : limits the output to the top 5 processes plus the header.
+
+ps -eo user,pid,ppid,cmd,stime,time,%cpu,%mem --sort=-%cpu | head -n 6
+
 echo "=============================================="
