@@ -176,9 +176,6 @@ user        3456    2345 firefox                 12:00   00:01:00  0.8  1.0
 root        7890    1234 /usr/bin/backup         13:30   00:00:15  1.5  0.8
 ```
 
-## Issues Encountered and Solutions
-
-
 ## Cross-Platform Compatibility
 
 ### Linux Support
@@ -191,7 +188,31 @@ root        7890    1234 /usr/bin/backup         13:30   00:00:15  1.5  0.8
 ========== SERVER PERFORMANCE STATS ==========
 
 --- CPU Usage ---
-CPU Usage: 15.2%
+CPU Usage: 7.6%
+
+--- Memory Usage ---
+Memory Used: 823MB / 3948MB (20.86%)
+
+--- Disk Usage ---
+Disk Used: 128G / 256G (50%)
+
+--- Top 5 Processes by CPU Usage ---
+USER         PID    PPID CMD                         STIME     TIME %MEM %CPU
+admin       2134       1 /usr/lib/systemd/systemd     08:12 00:00:02  0.5  3.5
+root        1024       1 /usr/sbin/nginx -g daemon of 08:10 00:00:01  1.2  2.8
+www-data    1123    1024 php-fpm: pool www            08:11 00:00:03  2.7  2.3
+root        1342       1 /usr/sbin/sshd               08:10 00:00:00  0.3  1.9
+admin       2155    2134 /usr/bin/python3 script.py   08:12 00:00:01  1.8  1.5
+
+--- Top 5 Processes by Memory Usage ---
+USER         PID    PPID CMD                         STIME     TIME %CPU %MEM
+www-data    1123    1024 php-fpm: pool www            08:11 00:00:03  2.3  7.2
+admin       2155    2134 /usr/bin/python3 script.py   08:12 00:00:01  1.5  6.4
+mysql       1501       1 /usr/sbin/mysqld             08:10 00:00:04  0.6  5.8
+root        1024       1 /usr/sbin/nginx -g daemon of 08:10 00:00:01  1.8  3.9
+admin       2134       1 /usr/lib/systemd/systemd     08:12 00:00:02  0.7  2.5
+
+==============================================
 
 ```
 
