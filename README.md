@@ -30,6 +30,10 @@ If you want to use this repository to monitor your server performance, follow th
    
    This script will display:
    - CPU usage statistics
+   - Memory usage statistics
+   - Disk usage statistics
+   - Top 5 processes by CPU usage
+   - Top 5 processes by Memory usage
 
 ### Usage Options
 - `./server-stats.sh` - Run basic performance check
