@@ -12,4 +12,14 @@ top -bn1 | grep "Cpu(s)" | \
     awk '{print "CPU Usage: " 100 - $8 "%"}'
 
 
+echo -e "\n--- Memory Usage ---"
+# free : displays the amount of free and used memory in the system.
+# -m : displays the memory in megabytes.
+# NR==2 : selects the second line of the output, which contains memory usage statistics.
+free -m | awk 'NR==2 {
+    used=$3
+    total=$2
+    printf "Memory Used: %sMB / %sMB (%.2f%%)\n", used, total, used*100/total
+}'
+
 echo "=============================================="

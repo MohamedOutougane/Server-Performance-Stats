@@ -70,6 +70,34 @@ top -bn1 | grep "Cpu(s)" | \
 ```
 In this case, `$8` would be `96.5` (idle), so CPU usage = 100 - 96.5 = 3.5%
 
+### 2. Memory Monitoring
+```bash
+free -m | awk 'NR==2 {
+    used=$3
+    total=$2
+    printf "Memory Used: %sMB / %sMB (%.2f%%)\n", used, total, used*100/total
+}'
+```
+
+**Command breakdown:**
+
+- **`free`**: Command that displays amount of free and used memory in the system
+- **`-m`**: Display memory values in megabytes (more readable than bytes)
+- **`NR==2`**: Selects only the second line of output (which contains actual memory statistics)
+- **`used=$3`**: Assigns the 3rd field (used memory) to the variable 'used'
+- **`total=$2`**: Assigns the 2nd field (total memory) to the variable 'total'
+- **`printf`**: Formats and prints the output with specific formatting
+- **`%.2f%%`**: Formats percentage with 2 decimal places
+- **`used*100/total`**: Calculates memory usage percentage
+
+**Example free -m output:**
+```
+              total        used        free      shared  buff/cache   available
+Mem:           3944        1250        1180          12        1513        2419
+Swap:          2047           0        2047
+```
+In this case, `$2` (total) = 3944, `$3` (used) = 1250, so usage = 1250/3944 * 100 = 31.69%
+
 ## Issues Encountered and Solutions
 
 
